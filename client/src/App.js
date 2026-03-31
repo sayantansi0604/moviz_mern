@@ -8,22 +8,23 @@ import './App.css';
 
 function App() {
   const addW = (movie) => {
-    // Change 'm.id' and 'movie.id' to 'm._id' and 'movie._id'
-    if (!watchlist.some(m => (m._id || m.id) === (movie._id || movie.id))) 
-    {
+    // We check for _id (MongoDB) OR id (local)
+    const movieId = movie._id || movie.id;
+    
+    if (!watchlist.some(m => (m._id || m.id) === movieId)) {
       setWatchlist([...watchlist, movie]);
       alert(`${movie.title} added to your Watchlist`);
-    } 
-    else {
+    } else {
       alert(`${movie.title} is already in your watchlist.`);
     }
   };
 
   const removeW = (movieWId) => {
-    // Change 'movie.id' to 'movie._id'
+    // Filter out based on the same dual-id logic
     const updatedList = watchlist.filter(movie => (movie._id || movie.id) !== movieWId);
     setWatchlist(updatedList);
   };
+  
   return (
     <Router>
       <div className="App">
