@@ -1,0 +1,226 @@
+body {
+  background-color: rgb(0, 0, 0);
+  color: #ffffff;
+}
+.Title{
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+.HeadW{
+  margin-top: 50px;
+}
+.IconT{
+  font-size: 2rem;
+  color: #a259ff;
+  line-height: 1;
+  margin-right: 15px;
+}
+.DesignT{
+  text-align: left;
+  background: linear-gradient(90deg, #de2c2c, #ee953b, #f12727);
+  background-size: 200% auto;
+  animation: shine 3s linear infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.g-3 {
+  --bs-gutter-y: 5rem; 
+  --bs-gutter-x: 2rem; 
+  margin-bottom: 50px;
+}
+/* Card Container */
+.movie-card {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  background: black;
+}
+.movie-card:hover {
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+/* Ensure all posters are the same size so the row stays even */
+.movie-poster {
+  height: 250px; /* Adjust this value to your liking */
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Title Truncation Logic */
+.movie-title {
+  font-size: 0.95rem; /* Adjust size to fit your design */
+  font-weight: 600;
+  white-space: nowrap;      /* Prevents title from wrapping to 2nd line */
+  overflow: hidden;         /* Hides the extra text */
+  text-overflow: ellipsis;  /* Adds the "..." effect */
+  margin-bottom: 5px;
+}
+
+/* Positioning the plus icon at the top right */
+.plus-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* Allows clicking the card through the overlay */
+}
+
+.movie-card:hover .plus-overlay {
+  opacity: 1;
+}
+
+.plus-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+  border-radius: 50%;
+  color: white;
+  pointer-events: auto; /* Re-enables clicking for the icon itself */
+  
+  /* Blur Effect */
+  background: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  transition: transform 0.2s ease;
+}
+
+.plus-icon:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.Delete-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* Allows clicking the card through the overlay */
+}
+.movie-card:hover .Delete-overlay {
+  opacity: 1;
+}
+
+
+.Delete-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+  border-radius: 50%;
+  color: white;
+  pointer-events: auto; /* Re-enables clicking for the icon itself */
+  
+  /* Blur Effect */
+  background: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  transition: transform 0.2s ease;
+}
+
+.Delete-icon:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.banner-slide {
+  position: relative;
+  height: 450px;           /* Increased slightly for better scale */
+  width: 100%;
+  margin-top: 80px;        /* Pulls the banner down to clear the navbar */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  background-color: black; /* Ensures the gaps are pure black */
+}
+
+.banner-fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;    /* Ensures you can still click things under the fade */
+  
+  /* Top fade: black to transparent | Bottom fade: transparent to black */
+  background: 
+    linear-gradient(to bottom, black 0%, transparent 20%),
+    linear-gradient(to top, black 0%, transparent 20%);
+}
+
+.banner-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* Prevents the Interstellar image from stretching */
+}
+
+@media (max-width: 768px) {
+  .banner-slide {
+    height: 300px;
+    margin-top: 60px;      /* Slightly smaller margin for mobile */
+  }
+}
+.custom-navbar {
+  /* Starts solid black at the top, fades to transparent at the bottom */
+  background: linear-gradient(
+    to bottom, 
+    rgba(0, 0, 0, 1) 0%, 
+    rgba(0, 0, 0, 0.8) 50%, 
+    rgba(0, 0, 0, 0) 100%
+  ) !important;
+  
+  padding-top: 1rem;
+  padding-bottom: 2.5rem; /* Extra padding at bottom makes the fade smoother */
+  border: none !important;
+}
+
+/* Ensure the links are bright white and have a nice hover effect */
+.nav-link {
+  color: #ffffff !important;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #a259ff !important; /* Purple glow from your icon */
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+.navI{
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.movie-card {
+  animation: popIn 0.5s ease-out; /* Makes cards pop in when they appear */
+}
