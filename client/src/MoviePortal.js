@@ -8,7 +8,8 @@ export default function MoviePortal({ addW }) {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/movies/all')
+    // UPDATED URL BELOW
+    fetch('https://moviz-web.onrender.com/api/movies/all')
       .then(response => response.json())
       .then(data => setMovies(data))
       .catch(err => console.error("Error fetching movies:", err));
