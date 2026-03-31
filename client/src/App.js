@@ -7,22 +7,23 @@ import NavB from './Navbar';
 import './App.css';
 
 function App() {
-  const [watchlist,setWatchlist] =useState([]);
-  const addW = (movie) =>{
-    if(!watchlist.some(m => m.id === movie.id))
+  const addW = (movie) => {
+    // Change 'm.id' and 'movie.id' to 'm._id' and 'movie._id'
+    if (!watchlist.some(m => (m._id || m.id) === (movie._id || movie.id))) 
     {
-      setWatchlist([...watchlist,movie]);
-      alert(`${movie.title} added to your Watchlist`)
-    }
+      setWatchlist([...watchlist, movie]);
+      alert(`${movie.title} added to your Watchlist`);
+    } 
     else {
       alert(`${movie.title} is already in your watchlist.`);
     }
   };
 
-  const removeW = (movieW) =>{
-    const updatedList = watchlist.filter(movie => movie.id !== movieW);
-  setWatchlist(updatedList);
-  }
+  const removeW = (movieWId) => {
+    // Change 'movie.id' to 'movie._id'
+    const updatedList = watchlist.filter(movie => (movie._id || movie.id) !== movieWId);
+    setWatchlist(updatedList);
+  };
   return (
     <Router>
       <div className="App">
